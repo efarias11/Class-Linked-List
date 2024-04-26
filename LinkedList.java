@@ -75,6 +75,62 @@ public class LinkedList {
             prevNode.setNext(current.getNext()); // connects the previous node with the current node's next (deleting the current node)
         }
     }
+    public void get(int index){
+        Node current = head;
+        for(int i = 0; i<index-1; i++){
+            current = current.getNext();
+        }
+        System.out.println("Node "+index+"'s data value is: "+current.getData());
+    }
+    public void set(Object data, int index){
+        Node current = head;
+        for(int i = 0; i<index-1; i++){
+            current=current.getNext();
+        }
+        current.setData(data);
+        System.out.println("You've replaced node number "+index+" with the data value: "+data);
+    }
+    public void search(Object value){ // method searches if a value exists in the linked list
+        Node current = head;
+        if(head==null){
+            System.out.println("The linked lists is empty!");
+        }else if(current!=null){
+            int c = 1; 
+            while(current.getNext()!=null){
+                if(current.getData()==value){ // checks if the searched value is = to the current nodes data
+                    System.out.println("The data value "+value+" can be found at node number "+c);
+                    break;
+                }
+                current = current.getNext();
+                c++;
+                if(current.getNext()==null){ // executes if the next node is empty 
+                    if(current.getData()==value){ // used to check the last/current node
+                        System.out.println("The data value "+value+" can be found at node number "+c);
+                        break;
+                    }else{ // if the value can't be found
+                        System.out.println(value+" can not be found in the linked list!");
+                    }
+                }
+            }
+        }
+    }
+    public void size(){
+        Node current = head;
+        int size = 1;
+        if(head==null){
+            System.out.println("The linked list is empty! There are "+size+" nodes");
+        }
+        while(current.getNext()!=null){
+            current = current.getNext();
+            size++;
+        }
+        current = current.getNext();
+        System.out.println("There are "+size+" node(s) in this linked list!");
+    }
+    public void sort(){
+        Node current = head;
+        
+    }
     public void show(){ // goes through the nodes and prints them out
         Node current = head;
 
@@ -83,6 +139,7 @@ public class LinkedList {
             current = current.getNext();
         }
         System.out.print(current.getData());
+        System.out.println(" ");
     }
 
 }
